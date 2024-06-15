@@ -1,4 +1,4 @@
-from google.cloud import firestore
+from google.cloud import firestore, bigquery
 import firebase_admin
 from firebase_admin import credentials, auth, firestore
 from datetime import datetime
@@ -12,8 +12,13 @@ def init_firestore():
 # Firebase Admin
 def init_db():
     firebase_secrets = dict(st.secrets["firebase"])
-    cred = credentials.Certificate(firebase_secrets)
-    # firebase_admin.initialize_app(cred)
+    if not  firebase_admin._apps:
+        cred = credentials.Certificate(firebase_secrets)
+        firebase_admin.initialize_app(cred)
     db = firestore.client()
 
     return db
+
+# Bigquery
+def init_bq():
+    return bigquery.Client()

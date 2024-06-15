@@ -1,26 +1,29 @@
 import streamlit as st
-from firebase_admin import auth
 from data.database import init_db
-from datetime import datetime
-
-db = init_db()
+from datetime import date, datetime
 
 def sidebar():
-    if "logged_in" not in st.session_state:
-        st.session_state.logged_in = False
-    if "show_login" not in st.session_state:
-        st.session_state.show_login = False
-
-    st.sidebar.button("ログイン/サインアップ", on_click=lambda: setattr(st.session_state, "show_login", True))
-
+    udata = st.session_state.user_data
+    init_gender = 0 if udata["gender"] == "男性" else 1
 
     st.sidebar.header("Personal Setting")
-    height = st.sidebar.number_input("身長 (cm)")
-    weight = st.sidebar.number_input("体重 (kg)")
-    age = st.sidebar.number_input("年齢")
-    gender = st.sidebar.selectbox("性別", ["男性", "女性"])
-    activity_level = st.sidebar.selectbox("運動週間", ["ほとんど運動しない", "軽い運動をする", "中程度の運動をする", "活発に運動をする", "非常に激しい運動をする"])
-    goal = st.sidebar.selectbox("目的", ["減量", "維持", "増量"])
+    height = st.sidebar.number_input("身長 (cm)", value=udata["height"])
+    weight = st.sidebar.number_input("体重 (kg)", value=udata["weight"])
+    birthday = st.sidebar.date_input("生年月日", min_value=date(1900, 1, 1), value=date.fromisoformat(udata["birthday"]))
+    gender = st.sidebar.selectbox("性別", ["男性", "女性"],index=init_gender)
+    activity_level = st.sidebar.selectbox("運動週間", ["ほとんど運動しない", "軽い運動をする", "中程度の運動をする", "活発に運動をする", "非常に激しい運動をする"], index=init_act_level(udata["activity_level"]))
+    goal = st.sidebar.selectbox("目的", ["減量", "維持", "増量"], index=init_goal(udata["goal"]))
+
+    today = date.today()
+    age = today.year - birthday.year - ((today.month, today.day) < (birthday.month, birthday.day))
+    st.session_state.user_data["age"] = age
+
+    if st.sidebar.button("ログアウト"):
+        st.session_state.logged_in = False
+        st.session_state.show_login = True
+        st.session_state.user_id = None
+        st.session_state.user_data = None
+        st.experimental_rerun()
 
     return {
         "height": height,
@@ -31,42 +34,26 @@ def sidebar():
         "goal": goal
     }
 
-def show_login_signup_form():
-    st.title("ログイン/サインアップ")
-    email = st.text_input("メールアドレス")
-    password = st.text_input("パスワード", type="password")
-    confirm_password = st.text_input("パスワード確認用", type="password")
-
-    if st.button("登録"):
-        if password == confirm_password:
-            try:
-                user = auth.create_user(
-                    email=email,
-                    password=password
-                )
-                st.success("ユーザー登録が完了しました")
-
-                user_id = user.uid
-
-                db.collection("users").document(user_id).set({
-                    "email": email,
-                    "height": None,
-                    "weight": None,
-                    "birthday": None,
-                    "gender": None,
-                    "activity_level": None,
-                    "goal": None,
-                    "meal_plan_requests": 0,
-                    "training_plan_requests": 0,
-                    "registration_timestamp": datetime.now().isoformat()
-                })
-
-                st.session_state.logged_in = True
-                st.session_state.show_login = False
-                
-            except Exception as e:
-                st.error(f"エラーが発生しました: {e}")
-        else:
-            st.error("パスワードが一致しません")
-
-    return (st.session_state.logged_in, st.session_state.show_login)
+def init_act_level(act_level):
+    if act_level == "ほとんど運動しない":
+        return 0
+    elif act_level == "軽い運動をする":
+        return 1
+    elif act_level == "中程度の運動をする":
+        return 2
+    elif act_level == "活発に運動をする":
+        return 3
+    elif act_level == "非常に激しい運動をする":
+        return 4
+    else:
+        return -1
+    
+def init_goal(goal):
+    if goal == "減量":
+        return 0
+    elif goal == "現状維持":
+        return 1
+    elif goal == "増量":
+        return 2
+    else:
+        -1
