@@ -2,11 +2,12 @@ import openai
 from config.settings import OPENAI_API_KEY, GPT_MODEL
 from data.database import init_db, init_bq
 import streamlit as st
+import streamlit_calendar as st_calendar
 import yaml
 import json
 from datetime import datetime, timedelta
 import time
-from query.update_insert_meal_plan import update_insert_meal_plans
+from query.meal_health_query import update_insert_meal_plans
 
 openai.api_key = OPENAI_API_KEY
 with open("prompt_templates.yaml", "r") as f:
@@ -37,6 +38,7 @@ def suggest_meal_plan():
     week_start = today - timedelta(days=today.weekday())
     week_end = week_start + timedelta(days=6)
 
+
     prompt_template = template.format(
         personal_info=personal_input_str,
         dietary=dietary_input_str,
@@ -48,21 +50,21 @@ def suggest_meal_plan():
     stream_response = client.chat.completions.create(
         model=GPT_MODEL,
         messages=[{"role": "user", "content": prompt_template}],
-        max_tokens=1000,
+        max_tokens=2000,
         n=1,
         stop=None,
-        temperature=0.3,
+        temperature=0.5,
         response_format={"type": "json_object"},
         stream=True
     )
 
     response = st.write_stream(stream_response)
     save_meal_plan(response)
+    update_counter()
     time.sleep(0.5)
-    save_meal_plan_to_bq(response)
-    display_meal_plan()
-    st.session_state.user_data["meal_plan_requests"] += 1
-    st.experimental_rerun()
+    # save_meal_plan_to_bq(response)
+    display_meal_plan_by_calendar()
+    st.rerun()
 
 
 def save_meal_plan(res):
@@ -89,6 +91,17 @@ def save_meal_plan(res):
         doc_ref.set(meal_entry)
 
 
+def update_counter():
+    user_doc_ref = db.collection("users").document(
+        st.session_state.user_id
+    )
+    tmp_counter = st.session_state.user_data["meal_plan_requests"] + 1
+    user_doc_ref.update({
+        "meal_plan_requests": tmp_counter
+    })
+    st.session_state.user_data["meal_plan_requests"] = tmp_counter
+
+
 def display_meal_plan():
     meal_plans = db.collection("meal_plans").where(
         "user_id", "==", st.session_state.user_id
@@ -102,24 +115,105 @@ def display_meal_plan():
 
     st.header("今週の献立")
     for plan in meal_data:
-        st.write(plan["date"])
-        st.write("朝食:　", plan["meals"].get("朝食", "なし"))
-        st.write("昼食:　", plan["meals"].get("昼食", "なし"))
-        st.write("夕食:　", plan["meals"].get("夕食", "なし"))
+        st.subheader(plan["date"])
+        meals = plan["meals"]
+        meal_types = ["breakfast", "lunch", "dinner"]
+        total_calorie = 0
+        for meal_type in meal_types:
+            if meal_type == "breakfast":
+                st.write("**朝食**")
+            elif meal_type == "lunch":
+                st.write("**昼食**")
+            else:
+                st.write("**夕食**")
+            menu_str = meals[meal_type]["menu"]
+            weight_str = meals[meal_type]["weight"]
+            cal_str = meals[meal_type]["calorie"]
+            list_menu = menu_str.strip("[]").split(",")
+            list_weight = weight_str.strip("[]").split(",")
+            list_cal = cal_str.strip("[]").split(",")
+            for i in range(len(list_menu)):
+                st.write(f"{list_menu[i]} ({list_weight[i]} g) | {list_cal[i]} kcal")
+                total_calorie += int(list_cal[i])
+        st.write(f"総摂取カロリー: {total_calorie} kcal")
         st.write("-----")
+
+
+def display_meal_plan_by_calendar():
+    meal_plans = db.collection("meal_plans").where(
+        "user_id", "==", st.session_state.user_id
+    ).stream()
+
+    start_suffix = {
+        "breakfast": "T06:30:00",
+        "lunch": "T12:00:00",
+        "dinner": "T18:30:00"
+    }
+    end_suffix = {
+        "breakfast": "T08:00:00",
+        "lunch": "T13:30:00",
+        "dinner": "T20:00:00"
+    }
+    eng_jp_convert = {
+        "breakfast": "朝食",
+        "lunch": "昼食",
+        "dinner": "夕食"
+    }
+
+    meal_data = []
+    i = 0
+    for plan in meal_plans:
+        data = plan.to_dict().get("data", {})
+        for date, meals in data.items():
+            for meal_type, detail in meals.items():
+                menu_str = detail["menu"]
+                weight_str = detail["weight"]
+                cal_str = detail["calorie"]
+                menu_list = menu_str.strip("[]").strip(" ").split(",")
+                weight_list = weight_str.strip("[]").strip(" ").split(",")
+                cal_list = cal_str.strip("[]").strip(" ").split(",")
+                total_cal = 0
+                for cal in cal_list:
+                    total_cal += int(cal)
+
+                n_list = len(menu_list)
+                title = [
+                    f"{menu_list[i]} ({weight_list[i]} g)" for i in range(n_list)
+                ]
+                title = ",".join(title)
+                meal_data.append({
+                    "id": i,
+                    "title": f"{eng_jp_convert[meal_type]}: {title} | {total_cal} kcal",
+                    "start": f"{date}{start_suffix[meal_type]}",
+                    "end": f"{date}{end_suffix[meal_type]}"
+                })
+                i += 1
+    options = {
+        "initialView": "listWeek",
+        "firstDay": 1,
+        "height": "auto",
+        "editable": False,
+        "locale": "ja"
+    }
+    st_calendar.calendar(
+        events=meal_data,
+        options=options
+    )
 
 
 def save_meal_plan_to_bq(res):
     meal_plan_data = json.loads(res)
     for date, meals in meal_plan_data.items():
-        query = update_insert_meal_plans(
-            st.session_state.user_id,
-            datetime.strptime(date, "%Y-%m-%d").date(),
-            meals["朝食"],
-            meals["昼食"],
-            meals["夕食"]
-        )
-        query_job = bq.query(query)
+        for meal_type in ["breakfast", "lunch", "dinner"]:
+            query = update_insert_meal_plans(
+                st.session_state.user_id,
+                datetime.strptime(date, "%Y-%m-%d").date(),
+                meal_type,
+                meals[meal_type]["menu"],
+                meals[meal_type]["weight"],
+                meals[meal_type]["calorie"]
+            )
+            query_job = bq.query(query)
 
 
 def reset_meal_plan_counter():
@@ -131,17 +225,21 @@ def reset_meal_plan_counter():
         data = plan.to_dict().get("data", {})
         for date, _ in data.items():
             dates.append(date)
+    if len(dates) == 0:
+        return
     latest_date_in_db = datetime.strptime(
         sorted(dates)[-1],
         "%Y-%m-%d"
     ).date()
     today = datetime.today().date()
+    user_doc_ref = db.collection("users").document(
+        st.session_state.user_id
+    )
     # Reset the meal_plan_requests counter
     if today > latest_date_in_db:
         st.session_state.user_data["meal_plan_requests"] = 0
-        meal_plans.update({
+        user_doc_ref.update({
             "meal_plan_requests": 0
         })
-        st.experimental_rerun()
     else:
         pass

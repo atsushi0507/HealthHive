@@ -23,7 +23,7 @@ def show_login_signup_form():
                     st.session_state.logged_in = True
                     st.session_state.show_login = False
                     st.session_state.user_id  = user.uid
-                    st.experimental_rerun()
+                    st.rerun()
             except Exception as e:
                 st.error(f"エラーが発生しました: {e}")
 
@@ -60,7 +60,7 @@ def show_login_signup_form():
                     st.session_state.logged_in = True
                     st.session_state.show_login = False
                     st.session_state.user_id = user_id
-                    st.experimental_rerun()
+                    st.rerun()
 
                 except Exception as e:
                     st.error(f"エラーが発生しました: {e}")

@@ -1,15 +1,16 @@
 import openai
 from config.settings import OPENAI_API_KEY, GPT_MODEL
-from data.database import init_firestore, init_bq
+from data.database import init_db, init_bq
 import yaml
 import json
 from datetime import datetime, timedelta
-from query.update_insert_training_plan import update_insert_training_plan
+from query.training_query import update_insert_training_plan
 import time
 import streamlit as st
+import streamlit_calendar as st_calendar
 
 openai.api_key = OPENAI_API_KEY
-db = init_firestore()
+db = init_db()
 bq = init_bq()
 
 with open("prompt_templates.yaml", "r") as f:
@@ -47,7 +48,7 @@ def suggest_training_plan():
     stream_response = client.chat.completions.create(
         model=GPT_MODEL,
         messages=[{"role": "user", "content": prompt_template}],
-        max_tokens=500,
+        max_tokens=1500,
         n=1,
         stop=None,
         temperature=0.3,
@@ -57,11 +58,22 @@ def suggest_training_plan():
 
     response = st.write_stream(stream_response)
     save_training_plan(response)
+    update_counter()
     time.sleep(0.5)
-    save_training_plan_to_bq(response)
-    display_train_plan()
-    st.session_state.user_data["train_plan_requests"] += 1
+    # save_training_plan_to_bq(response)
+    # display_train_plan()
     st.experimental_rerun()
+
+
+def update_counter():
+    user_doc_ref = db.collection("users").document(
+        st.session_state.user_id
+    )
+    tmp_counter = st.session_state.user_data["training_plan_requests"] + 1
+    user_doc_ref.update({
+        "training_plan_requests": tmp_counter
+    })
+    st.session_state.user_data["training_plan_requests"] = tmp_counter
 
 
 def save_training_plan(res):
@@ -103,21 +115,26 @@ def reset_train_plan_counter():
     train_plans = db.collection("training_plans").where(
         "user_id", "==", st.session_state.user_id
     ).stream()
-
     dates = []
     for plan in train_plans:
         data = plan.to_dict().get("data", {})
         for date, _ in data.items():
             dates.append(date)
+    if len(dates) == 0:
+        return
     latest_date_in_db = datetime.strptime(
         sorted(dates)[-1],
         "%Y-%m-%d"
     ).date()
-    today = datetime.today()
+    today = datetime.today().date()
+    user_doc_ref = db.collection("users").document(
+        st.session_state.user_id
+    )
+
     if today > latest_date_in_db:
-        st.session_state.user_data["train_plan_requests"] = 0
-        train_plans.update({
-            "train_plan_requests": 0
+        st.session_state.user_data["training_plan_requests"] = 0
+        user_doc_ref.update({
+            "training_plan_requests": 0
         })
     else:
         pass
@@ -128,14 +145,36 @@ def display_train_plan():
         "user_id", "==", st.session_state.user_id
     ).stream()
     train_data = []
+    i = 0
     for plan in train_plans:
         data = plan.to_dict().get("data", {})
         for date, trains in data.items():
-            train_data.append({"date": date, "trains": trains})
-    train_data.sort(key=lambda x: datetime.strfptime(x["date"], "%Y-%m-%d"))
+            menu_str = trains["menu"]
+            set_str = trains["set"]
+            list_menu = menu_str.strip("[]").split(",")
+            list_set = set_str.strip("[]").split(",")
+
+            menu = [
+                f"{list_menu[i]} {list_set[i]}" for i in range(len(list_menu))
+            ]
+            menu = ",".join(menu)
+            train_data.append({
+                "id": i,
+                "title": menu,
+                "start": date
+            })
+            i += 1
 
     st.header("今週のトレーニング")
-    for plan in train_data:
-        st.write(plan["data"])
-        st.write("メニュー:　", plan["training_plan"])
-        st.write("-----")
+
+    options = {
+        "initialView": "listWeek",
+        "firstDay": 1,
+        "height": "auto",
+        "editable": False,
+        "locale": "ja"
+    }
+    st_calendar.calendar(
+        events=train_data,
+        options=options
+    )
