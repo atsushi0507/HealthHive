@@ -23,7 +23,7 @@ def sidebar():
         st.session_state.show_login = True
         st.session_state.user_id = None
         st.session_state.user_data = None
-        st.experimental_rerun()
+        st.rerun()
 
     return {
         "height": height,
