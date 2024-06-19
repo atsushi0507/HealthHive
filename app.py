@@ -29,6 +29,8 @@ if "health_log" not in st.session_state:
     st.session_state.health_log = None
 if "meal_log" not in st.session_state:
     st.session_state.meal_log = None
+if "body_history" not in st.session_state:
+    st.session_state.body_history = None
 if "training_history" not in st.session_state:
     st.session_state.training_history = None
 

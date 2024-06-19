@@ -86,3 +86,22 @@ def update_insert_meal_log(user_id, date, meal_type, menu):
         VALUES (user_id, date, meal_type, menu)
     """
     return query
+
+
+def read_body_log(user_id):
+    project_id = "health-hive-data"
+    dataset_id = "diet_health_management"
+    table_id = "daily_body_metrics"
+    query = f"""
+    SELECT
+        date,
+        weight,
+        body_fat
+    FROM
+        `{project_id}.{dataset_id}.{table_id}`
+    WHERE
+        user_id = '{user_id}'
+    ORDER BY
+        date
+    """
+    return query
