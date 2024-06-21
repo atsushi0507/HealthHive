@@ -1,4 +1,4 @@
-def update_insert_meal_plans(user_id, date, meal_type, weight, calorie):
+def update_insert_meal_plans(user_id, date, meal_type, menu, weight, calorie):
     project_id = "health-hive-data"
     dataset_id = "diet_health_management"
     table_id = "suggested_meal_plans"
@@ -9,6 +9,7 @@ def update_insert_meal_plans(user_id, date, meal_type, weight, calorie):
             '{user_id}' AS user_id,
             DATE('{date}') AS date,
             '{meal_type}' AS meal_type,
+            '{menu}' AS menu,
             '{weight}' AS weight,
             '{calorie}' AS calorie
 

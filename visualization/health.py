@@ -38,12 +38,12 @@ def plot_body_metrics():
     fig.update_yaxes(
         title="体重 [kg]", 
         showgrid=False,
-        range=[df.weight.min()-5, df.weight.max()*1.2]
+        range=[df.weight.min()-5, df.weight.max()*1.05]
         )
     fig.update_yaxes(
         title="体脂肪率 [%]",
         showgrid=False,
         secondary_y=True,
-        range=[0, df.body_fat.max()*1.2]
+        range=[0, df.body_fat.max()*1.5]
     )
     return fig
