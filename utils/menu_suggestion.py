@@ -8,6 +8,7 @@ import json
 from datetime import datetime, timedelta
 import time
 from query.meal_health_query import update_insert_meal_plans
+import re
 
 openai.api_key = OPENAI_API_KEY
 with open("prompt_templates.yaml", "r") as f:
@@ -38,10 +39,14 @@ def suggest_meal_plan():
     week_start = today - timedelta(days=today.weekday())
     week_end = week_start + timedelta(days=6)
 
+    total_calory = st.session_state.dietary["target_calories"]
 
     prompt_template = template.format(
         personal_info=personal_input_str,
         dietary=dietary_input_str,
+        breakfast=f"{total_calory*0.3:.1f}",
+        lunch=f"{total_calory*0.4:.1f}",
+        dinner=f"{total_calory*0.3:.1f}",
         week_start=week_start,
         week_end=week_end
     )
@@ -62,7 +67,7 @@ def suggest_meal_plan():
     save_meal_plan(response)
     update_counter()
     time.sleep(0.5)
-    # save_meal_plan_to_bq(response)
+    save_meal_plan_to_bq(response)
     display_meal_plan_by_calendar()
     st.rerun()
 
@@ -174,11 +179,12 @@ def display_meal_plan_by_calendar():
                 cal_list = cal_str.strip("[]").strip(" ").split(",")
                 total_cal = 0
                 for cal in cal_list:
-                    total_cal += int(cal)
+                    int_cal = re.sub(r'\D', '', cal) 
+                    total_cal += int(int_cal)
 
                 n_list = len(menu_list)
                 title = [
-                    f"{menu_list[i]} ({weight_list[i]} g)" for i in range(n_list)
+                    f"{menu_list[i]} ({weight_list[i]})" for i in range(n_list)
                 ]
                 title = ",".join(title)
                 meal_data.append({

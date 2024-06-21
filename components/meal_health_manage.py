@@ -10,6 +10,10 @@ from utils.save_health_history import (
     add_health_log,
     add_meal_log
 )
+from visualization.health import (
+    read_from_bq,
+    plot_body_metrics
+)
 from config.settings import MEAL_SUGGEST_LIMIT
 
 def meal_plan_page():
@@ -32,6 +36,15 @@ def meal_plan_page():
 
     with col2:
         add_health_log()
+
+    if (
+        st.button("データを更新") or
+        st.session_state.body_history is None
+    ):
+        read_from_bq()
+    fig = plot_body_metrics()
+    st.plotly_chart(fig)
+
 
 def suggest_column():
     reset_meal_plan_counter()

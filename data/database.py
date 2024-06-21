@@ -1,9 +1,8 @@
 from google.cloud import firestore, bigquery
 import firebase_admin
-from firebase_admin import credentials, auth, firestore
-from datetime import datetime
+from google.oauth2 import service_account
+from firebase_admin import credentials, firestore
 import streamlit as st
-import json
 
 # Firestoreの初期化
 def init_firestore():
@@ -12,7 +11,7 @@ def init_firestore():
 # Firebase Admin
 def init_db():
     firebase_secrets = dict(st.secrets["firebase"])
-    if not  firebase_admin._apps:
+    if not firebase_admin._apps:
         cred = credentials.Certificate(firebase_secrets)
         firebase_admin.initialize_app(cred)
     db = firestore.client()
@@ -21,4 +20,11 @@ def init_db():
 
 # Bigquery
 def init_bq():
-    return bigquery.Client()
+    bq_secrets = service_account.Credentials.from_service_account_info(
+        st.secrets["bigquery"]
+    )
+
+    return bigquery.Client(
+        credentials=bq_secrets,
+        project=bq_secrets.project_id
+    )

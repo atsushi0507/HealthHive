@@ -1,4 +1,4 @@
-def update_insert_meal_plans(user_id, date, meal_type, weight, calorie):
+def update_insert_meal_plans(user_id, date, meal_type, menu, weight, calorie):
     project_id = "health-hive-data"
     dataset_id = "diet_health_management"
     table_id = "suggested_meal_plans"
@@ -9,6 +9,7 @@ def update_insert_meal_plans(user_id, date, meal_type, weight, calorie):
             '{user_id}' AS user_id,
             DATE('{date}') AS date,
             '{meal_type}' AS meal_type,
+            '{menu}' AS menu,
             '{weight}' AS weight,
             '{calorie}' AS calorie
 
@@ -84,5 +85,24 @@ def update_insert_meal_log(user_id, date, meal_type, menu):
     WHEN NOT MATCHED THEN
         INSERT (user_id, date, meal_type, menu)
         VALUES (user_id, date, meal_type, menu)
+    """
+    return query
+
+
+def read_body_log(user_id):
+    project_id = "health-hive-data"
+    dataset_id = "diet_health_management"
+    table_id = "daily_body_metrics"
+    query = f"""
+    SELECT
+        date,
+        weight,
+        body_fat
+    FROM
+        `{project_id}.{dataset_id}.{table_id}`
+    WHERE
+        user_id = '{user_id}'
+    ORDER BY
+        date
     """
     return query

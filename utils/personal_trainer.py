@@ -62,7 +62,7 @@ def suggest_training_plan():
     time.sleep(0.5)
     # save_training_plan_to_bq(response)
     # display_train_plan()
-    st.experimental_rerun()
+    st.rerun()
 
 
 def update_counter():
