@@ -22,11 +22,11 @@ def meal_plan_page():
     st.session_state.dietary = calc_pfc(personal_info)
     st.header("マクロ栄養素")
     st.write(
-        f"一日に必要なカロリー: {st.session_state.dietary["target_calories"]:.1f} kcal"
+        f"一日に必要なカロリー: {st.session_state.dietary['target_calories']:.1f} kcal"
     )
-    st.write(f"タンパク質: {st.session_state.dietary["p_grams"]:.1f} g")
-    st.write(f"脂質: {st.session_state.dietary["f_grams"]:.1f} g")
-    st.write(f"炭水化物: {st.session_state.dietary["c_grams"]:.1f} g")
+    st.write(f"タンパク質: {st.session_state.dietary['p_grams']:.1f} g")
+    st.write(f"脂質: {st.session_state.dietary['f_grams']:.1f} g")
+    st.write(f"炭水化物: {st.session_state.dietary['c_grams']:.1f} g")
 
     suggest_column()
 
