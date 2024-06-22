@@ -60,8 +60,7 @@ def suggest_training_plan():
     save_training_plan(response)
     update_counter()
     time.sleep(0.5)
-    # save_training_plan_to_bq(response)
-    # display_train_plan()
+    save_training_plan_to_bq(response)
     st.rerun()
 
 
@@ -106,7 +105,8 @@ def save_training_plan_to_bq(res):
         query = update_insert_training_plan(
             st.session_state.user_id,
             datetime.strptime(date, "%Y-%m-%d").date(),
-            plans
+            plans["menu"],
+            plans["set"]
         )
         query_job = bq.query(query)
 

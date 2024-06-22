@@ -10,7 +10,6 @@ import time
 from query.meal_health_query import update_insert_meal_plans
 import re
 
-openai.api_key = OPENAI_API_KEY
 with open("prompt_templates.yaml", "r") as f:
     template = yaml.safe_load(f)["meal_suggestion_template"]
 
@@ -51,6 +50,7 @@ def suggest_meal_plan():
         week_end=week_end
     )
 
+    openai.api_key = OPENAI_API_KEY
     client = openai.Client()
     stream_response = client.chat.completions.create(
         model=GPT_MODEL,
