@@ -44,6 +44,7 @@ def suggest_training_plan():
     )
 
     openai.api_key = OPENAI_API_KEY
+    st.write(openai.api_key)
     client = openai.Client()
     stream_response = client.chat.completions.create(
         model=GPT_MODEL,
