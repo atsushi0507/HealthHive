@@ -50,8 +50,9 @@ def suggest_meal_plan():
         week_end=week_end
     )
 
-    openai.api_key = OPENAI_API_KEY
-    client = openai.Client()
+    client = openai.Client(
+        api_key=OPENAI_API_KEY
+    )
     stream_response = client.chat.completions.create(
         model=GPT_MODEL,
         messages=[{"role": "user", "content": prompt_template}],
