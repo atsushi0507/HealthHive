@@ -66,7 +66,7 @@ def register_user(email, password):
         else:
             st.error("確認メールの送信に失敗しました")
 
-        signin_verified(email)
+        signin_verified(email, user)
         # timeout = time.time() + 600
         # while True:
         #     user = auth.get_user(user.uid)
@@ -103,7 +103,7 @@ def register_user(email, password):
         link = auth.generate_email_verification_link(email)
         if send_verification_email(email, link):
             st.success(f"{email} 宛に確認メールを送りました。\n10分以内に本登録を完了してください。")
-            signin_verified(email)
+            signin_verified(email, user)
         else:
             st.error("確認メールの送信に失敗しました")
     # except Exception as e:
@@ -150,7 +150,7 @@ def send_verification_email(to_email, verification_link):
         st.warning(e)
         return False
     
-def signin_verified(email):
+def signin_verified(email, user):
     timeout = time.time() + 600
     while True:
         user = auth.get_user(user.uid)
