@@ -9,7 +9,6 @@ import time
 import streamlit as st
 import streamlit_calendar as st_calendar
 
-openai.api_key = OPENAI_API_KEY
 db = init_db()
 bq = init_bq()
 
@@ -44,6 +43,7 @@ def suggest_training_plan():
         week_end=week_end
     )
 
+    openai.api_key = OPENAI_API_KEY
     client = openai.Client()
     stream_response = client.chat.completions.create(
         model=GPT_MODEL,
