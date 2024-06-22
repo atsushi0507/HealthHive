@@ -66,42 +66,44 @@ def register_user(email, password):
         else:
             st.error("確認メールの送信に失敗しました")
 
-        timeout = time.time() + 600
-        while True:
-            user = auth.get_user(user.uid)
-            if user.email_verified:
-                st.success("登録完了です")
-                break
-            if time.time() > timeout:
-                st.warining("有効期限が切れました。再度登録手続きを行ってください。")
-                break
-            time.sleep(5)
+        signin_verified(email)
+        # timeout = time.time() + 600
+        # while True:
+        #     user = auth.get_user(user.uid)
+        #     if user.email_verified:
+        #         st.success("登録完了です")
+        #         break
+        #     if time.time() > timeout:
+        #         st.warining("有効期限が切れました。再度登録手続きを行ってください。")
+        #         break
+        #     time.sleep(5)
 
-        # Firestore に登録
-        user_id = user.uid
+        # # Firestore に登録
+        # user_id = user.uid
 
-        db.collection("users").document(user_id).set({
-            "email": email,
-            "height": None,
-            "weight": None,
-            "birthday": None,
-            "gender": None,
-            "activity_level": None,
-            "goal": None,
-            "meal_plan_requests": 0,
-            "training_plan_requests": 0,
-            "registration_timestamp": datetime.now().isoformat()
-        })
-        st.session_state.logged_in = True
-        st.session_state.show_login = False
-        st.session_state.user_id = user_id
-        st.rerun()
+        # db.collection("users").document(user_id).set({
+        #     "email": email,
+        #     "height": None,
+        #     "weight": None,
+        #     "birthday": None,
+        #     "gender": None,
+        #     "activity_level": None,
+        #     "goal": None,
+        #     "meal_plan_requests": 0,
+        #     "training_plan_requests": 0,
+        #     "registration_timestamp": datetime.now().isoformat()
+        # })
+        # st.session_state.logged_in = True
+        # st.session_state.show_login = False
+        # st.session_state.user_id = user_id
+        # st.rerun()
         
     except auth.EmailAlreadyExistsError:
         user = auth.get_user_by_email(email)
         link = auth.generate_email_verification_link(email)
         if send_verification_email(email, link):
             st.success(f"{email} 宛に確認メールを送りました。\n10分以内に本登録を完了してください。")
+            signin_verified(email)
         else:
             st.error("確認メールの送信に失敗しました")
     # except Exception as e:
@@ -147,3 +149,35 @@ def send_verification_email(to_email, verification_link):
     except Exception as e:
         st.warning(e)
         return False
+    
+def signin_verified(email):
+    timeout = time.time() + 600
+    while True:
+        user = auth.get_user(user.uid)
+        if user.email_verified:
+            st.success("登録完了です")
+            break
+        if time.time() > timeout:
+            st.warining("有効期限が切れました。再度登録手続きを行ってください。")
+            break
+        time.sleep(5)
+
+    # Firestore に登録
+    user_id = user.uid
+
+    db.collection("users").document(user_id).set({
+        "email": email,
+        "height": None,
+        "weight": None,
+        "birthday": None,
+        "gender": None,
+        "activity_level": None,
+        "goal": None,
+        "meal_plan_requests": 0,
+        "training_plan_requests": 0,
+        "registration_timestamp": datetime.now().isoformat()
+    })
+    st.session_state.logged_in = True
+    st.session_state.show_login = False
+    st.session_state.user_id = user_id
+    st.rerun()
