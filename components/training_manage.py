@@ -37,7 +37,7 @@ def train_plan_page():
 
 def suggest_column():
     st.subheader("パーソナルトレーニングプラン")
-    reset_train_plan_counter
+    reset_train_plan_counter()
     train_plan_requests = st.session_state.user_data["training_plan_requests"]
     if train_plan_requests < TRAIN_SUGGEST_LIMIT:
         disable_train_plan = False
