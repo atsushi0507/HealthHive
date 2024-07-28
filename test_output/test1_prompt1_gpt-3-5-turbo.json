@@ -1,0 +1,121 @@
+{
+    "2024-07-22": {
+        "breakfast": {
+            "menu": "[玄米おにぎり, 味噌汁, わかめときゅうりの酢の物]",
+            "weight": "[150g, 200ml, 100g]",
+            "calorie": "[240kcal, 40kcal, 30kcal]"
+        },
+        "lunch": {
+            "menu": "[鶏胸肉の蒸し焼き, さつまいもの煮物, ほうれん草のおひたし]",
+            "weight": "[150g, 150g, 100g]",
+            "calorie": "[250kcal, 120kcal, 40kcal]"
+        },
+        "dinner": {
+            "menu": "[さばの塩焼き, お味噌汁, キャベツと油揚げの炒め物]",
+            "weight": "[150g, 200ml, 100g]",
+            "calorie": "[270kcal, 40kcal, 80kcal]"
+        }
+    },
+    "2024-07-23": {
+        "breakfast": {
+            "menu": "[ヨーグルト, りんご]",
+            "weight": "[150g, 100g]",
+            "calorie": "[100kcal, 50kcal]"
+        },
+        "lunch": {
+            "menu": "[豚肉と野菜の炒め物, ご飯, 味噌汁]",
+            "weight": "[150g, 150g, 200ml]",
+            "calorie": "[300kcal, 200kcal, 40kcal]"
+        },
+        "dinner": {
+            "menu": "[鮭の塩焼き, お味噌汁, ほうれん草のおひたし]",
+            "weight": "[150g, 200ml, 100g]",
+            "calorie": "[250kcal, 40kcal, 40kcal]"
+        }
+    },
+    "2024-07-24": {
+        "breakfast": {
+            "menu": "[玄米おにぎり, 味噌汁, わかめときゅうりの酢の物]",
+            "weight": "[150g, 200ml, 100g]",
+            "calorie": "[240kcal, 40kcal, 30kcal]"
+        },
+        "lunch": {
+            "menu": "[鶏胸肉の蒸し焼き, さつまいもの煮物, ほうれん草のおひたし]",
+            "weight": "[150g, 150g, 100g]",
+            "calorie": "[250kcal, 120kcal, 40kcal]"
+        },
+        "dinner": {
+            "menu": "[さばの塩焼き, お味噌汁, キャベツと油揚げの炒め物]",
+            "weight": "[150g, 200ml, 100g]",
+            "calorie": "[270kcal, 40kcal, 80kcal]"
+        }
+    },
+    "2024-07-25": {
+        "breakfast": {
+            "menu": "[ヨーグルト, りんご]",
+            "weight": "[150g, 100g]",
+            "calorie": "[100kcal, 50kcal]"
+        },
+        "lunch": {
+            "menu": "[豚肉と野菜の炒め物, ご飯, 味噌汁]",
+            "weight": "[150g, 150g, 200ml]",
+            "calorie": "[300kcal, 200kcal, 40kcal]"
+        },
+        "dinner": {
+            "menu": "[鮭の塩焼き, お味噌汁, ほうれん草のおひたし]",
+            "weight": "[150g, 200ml, 100g]",
+            "calorie": "[250kcal, 40kcal, 40kcal]"
+        }
+    },
+    "2024-07-26": {
+        "breakfast": {
+            "menu": "[ヨーグルト, りんご]",
+            "weight": "[150g, 100g]",
+            "calorie": "[100kcal, 50kcal]"
+        },
+        "lunch": {
+            "menu": "[豚肉と野菜の炒め物, ご飯, 味噌汁]",
+            "weight": "[150g, 150g, 200ml]",
+            "calorie": "[300kcal, 200kcal, 40kcal]"
+        },
+        "dinner": {
+            "menu": "[鮭の塩焼き, お味噌汁, ほうれん草のおひたし]",
+            "weight": "[150g, 200ml, 100g]",
+            "calorie": "[250kcal, 40kcal, 40kcal]"
+        }
+    },
+    "2024-07-27": {
+        "breakfast": {
+            "menu": "[ヨーグルト, りんご]",
+            "weight": "[150g, 100g]",
+            "calorie": "[100kcal, 50kcal]"
+        },
+        "lunch": {
+            "menu": "[豚肉と野菜の炒め物, ご飯, 味噌汁]",
+            "weight": "[150g, 150g, 200ml]",
+            "calorie": "[300kcal, 200kcal, 40kcal]"
+        },
+        "dinner": {
+            "menu": "[鮭の塩焼き, お味噌汁, ほうれん草のおひたし]",
+            "weight": "[150g, 200ml, 100g]",
+            "calorie": "[250kcal, 40kcal, 40kcal]"
+        }
+    },
+    "2024-07-28": {
+        "breakfast": {
+            "menu": "[玄米おにぎり, 味噌汁, わかめときゅうりの酢の物]",
+            "weight": "[150g, 200ml, 100g]",
+            "calorie": "[240kcal, 40kcal, 30kcal]"
+        },
+        "lunch": {
+            "menu": "[鶏胸肉の蒸し焼き, さつまいもの煮物, ほうれん草のおひたし]",
+            "weight": "[150g, 150g, 100g]",
+            "calorie": "[250kcal, 120kcal, 40kcal]"
+        },
+        "dinner": {
+            "menu": "[さばの塩焼き, お味噌汁, キャベツと油揚げの炒め物]",
+            "weight": "[150g, 200ml, 100g]",
+            "calorie": "[270kcal, 40kcal, 80kcal]"
+        }
+    }
+}

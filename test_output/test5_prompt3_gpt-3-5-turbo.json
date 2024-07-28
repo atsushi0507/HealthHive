@@ -1,0 +1,121 @@
+{
+    "2024-07-22": {
+        "breakfast": {
+            "menu": "[玄米おかゆ, 納豆, ほうれん草のおひたし]",
+            "weight": "[200g, 50g, 100g]",
+            "calorie": "[250 kcal, 100 kcal, 100 kcal]"
+        },
+        "lunch": {
+            "menu": "[鮭の塩焼き, ご飯, みそ汁, サラダ]",
+            "weight": "[150g, 200g, 200ml, 100g]",
+            "calorie": "[300 kcal, 300 kcal, 50 kcal, 100 kcal]"
+        },
+        "dinner": {
+            "menu": "[鶏の唐揚げ, ご飯, 野菜炒め, 味噌汁]",
+            "weight": "[150g, 200g, 150g, 200ml]",
+            "calorie": "[350 kcal, 300 kcal, 100 kcal, 50 kcal]"
+        }
+    },
+    "2024-07-23": {
+        "breakfast": {
+            "menu": "[ヨーグルト, バナナ, グラノーラ]",
+            "weight": "[150g, 1個, 30g]",
+            "calorie": "[150 kcal, 100 kcal, 200 kcal]"
+        },
+        "lunch": {
+            "menu": "[鶏肉の照り焼き, ご飯, みそ汁, サラダ]",
+            "weight": "[150g, 200g, 200ml, 100g]",
+            "calorie": "[300 kcal, 300 kcal, 50 kcal, 100 kcal]"
+        },
+        "dinner": {
+            "menu": "[豚汁, 納豆, ほうれん草のおひたし]",
+            "weight": "[250ml, 50g, 100g]",
+            "calorie": "[200 kcal, 100 kcal, 100 kcal]"
+        }
+    },
+    "2024-07-24": {
+        "breakfast": {
+            "menu": "[トースト, 目玉焼き, サラダ]",
+            "weight": "[2枚, 2個, 100g]",
+            "calorie": "[200 kcal, 150 kcal, 100 kcal]"
+        },
+        "lunch": {
+            "menu": "[カレイの煮付け, ご飯, みそ汁, サラダ]",
+            "weight": "[150g, 200g, 200ml, 100g]",
+            "calorie": "[250 kcal, 300 kcal, 50 kcal, 100 kcal]"
+        },
+        "dinner": {
+            "menu": "[牛肉の炒め物, ご飯, 野菜の煮物, 味噌汁]",
+            "weight": "[150g, 200g, 150g, 200ml]",
+            "calorie": "[300 kcal, 300 kcal, 100 kcal, 50 kcal]"
+        }
+    },
+    "2024-07-25": {
+        "breakfast": {
+            "menu": "[ホットケーキ, ベーコン, オレンジジュース]",
+            "weight": "[2枚, 2枚, 200ml]",
+            "calorie": "[300 kcal, 200 kcal, 150 kcal]"
+        },
+        "lunch": {
+            "menu": "[豚肉の生姜焼き, ご飯, みそ汁, サラダ]",
+            "weight": "[150g, 200g, 200ml, 100g]",
+            "calorie": "[350 kcal, 300 kcal, 50 kcal, 100 kcal]"
+        },
+        "dinner": {
+            "menu": "[鯖の塩焼き, ご飯, 野菜炒め, 味噌汁]",
+            "weight": "[150g, 200g, 150g, 200ml]",
+            "calorie": "[300 kcal, 300 kcal, 100 kcal, 50 kcal]"
+        }
+    },
+    "2024-07-26": {
+        "breakfast": {
+            "menu": "[ヨーグルト, りんご, シリアル]",
+            "weight": "[150g, 1個, 30g]",
+            "calorie": "[150 kcal, 100 kcal, 200 kcal]"
+        },
+        "lunch": {
+            "menu": "[鶏肉の唐揚げ, ご飯, みそ汁, サラダ]",
+            "weight": "[150g, 200g, 200ml, 100g]",
+            "calorie": "[300 kcal, 300 kcal, 50 kcal, 100 kcal]"
+        },
+        "dinner": {
+            "menu": "[豚汁, 納豆, ほうれん草のおひたし]",
+            "weight": "[250ml, 50g, 100g]",
+            "calorie": "[200 kcal, 100 kcal, 100 kcal]"
+        }
+    },
+    "2024-07-27": {
+        "breakfast": {
+            "menu": "[玄米おかゆ, 納豆, ほうれん草のおひたし]",
+            "weight": "[200g, 50g, 100g]",
+            "calorie": "[250 kcal, 100 kcal, 100 kcal]"
+        },
+        "lunch": {
+            "menu": "[鮭の塩焼き, ご飯, みそ汁, サラダ]",
+            "weight": "[150g, 200g, 200ml, 100g]",
+            "calorie": "[300 kcal, 300 kcal, 50 kcal, 100 kcal]"
+        },
+        "dinner": {
+            "menu": "[鶏の唐揚げ, ご飯, 野菜炒め, 味噌汁]",
+            "weight": "[150g, 200g, 150g, 200ml]",
+            "calorie": "[350 kcal, 300 kcal, 100 kcal, 50 kcal]"
+        }
+    },
+    "2024-07-28": {
+        "breakfast": {
+            "menu": "[ヨーグルト, バナナ, グラノーラ]",
+            "weight": "[150g, 1個, 30g]",
+            "calorie": "[150 kcal, 100 kcal, 200 kcal]"
+        },
+        "lunch": {
+            "menu": "[鶏肉の照り焼き, ご飯, みそ汁, サラダ]",
+            "weight": "[150g, 200g, 200ml, 100g]",
+            "calorie": "[300 kcal, 300 kcal, 50 kcal, 100 kcal]"
+        },
+        "dinner": {
+            "menu": "[豚汁, 納豆, ほうれん草のおひたし]",
+            "weight": "[250ml, 50g, 100g]",
+            "calorie": "[200 kcal, 100 kcal, 100 kcal]"
+        }
+    }
+}

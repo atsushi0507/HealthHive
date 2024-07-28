@@ -1,0 +1,121 @@
+{
+    "2024-07-22": {
+        "breakfast": {
+            "menu": "[オートミール, バナナ, ギリシャヨーグルト]",
+            "weight": "[50g, 100g, 150g]",
+            "calorie": "[190kcal, 89kcal, 150kcal]"
+        },
+        "lunch": {
+            "menu": "[鶏の胸肉グリル, 玄米, ほうれん草のソテー]",
+            "weight": "[200g, 150g, 100g]",
+            "calorie": "[220kcal, 200kcal, 50kcal]"
+        },
+        "dinner": {
+            "menu": "[サーモンの塩焼き, ブロッコリーの蒸し物, トマトサラダ]",
+            "weight": "[150g, 100g, 100g]",
+            "calorie": "[250kcal, 35kcal, 30kcal]"
+        }
+    },
+    "2024-07-23": {
+        "breakfast": {
+            "menu": "[全粒粉トースト, アボカド, ゆで卵]",
+            "weight": "[50g, 50g, 2個]",
+            "calorie": "[130kcal, 80kcal, 140kcal]"
+        },
+        "lunch": {
+            "menu": "[サバの味噌煮, 白米, キャベツの千切り]",
+            "weight": "[200g, 150g, 100g]",
+            "calorie": "[300kcal, 250kcal, 25kcal]"
+        },
+        "dinner": {
+            "menu": "[豚肉の生姜焼き, ほうれん草のおひたし, 味噌汁]",
+            "weight": "[150g, 100g, 200ml]",
+            "calorie": "[250kcal, 30kcal, 50kcal]"
+        }
+    },
+    "2024-07-24": {
+        "breakfast": {
+            "menu": "[オートミール, ブルーベリー, アーモンドミルク]",
+            "weight": "[50g, 100g, 200ml]",
+            "calorie": "[190kcal, 57kcal, 40kcal]"
+        },
+        "lunch": {
+            "menu": "[チキンカレー, 玄米, サラダ]",
+            "weight": "[200g, 150g, 100g]",
+            "calorie": "[300kcal, 200kcal, 50kcal]"
+        },
+        "dinner": {
+            "menu": "[鮭のホイル焼き, きんぴらごぼう, 味噌汁]",
+            "weight": "[150g, 100g, 200ml]",
+            "calorie": "[250kcal, 100kcal, 50kcal]"
+        }
+    },
+    "2024-07-25": {
+        "breakfast": {
+            "menu": "[全粒粉トースト, ピーナッツバター, バナナ]",
+            "weight": "[50g, 20g, 100g]",
+            "calorie": "[130kcal, 120kcal, 89kcal]"
+        },
+        "lunch": {
+            "menu": "[牛肉のステーキ, 玄米, ほうれん草のソテー]",
+            "weight": "[150g, 150g, 100g]",
+            "calorie": "[350kcal, 200kcal, 50kcal]"
+        },
+        "dinner": {
+            "menu": "[鶏の照り焼き, ブロッコリーの蒸し物, トマトサラダ]",
+            "weight": "[150g, 100g, 100g]",
+            "calorie": "[250kcal, 35kcal, 30kcal]"
+        }
+    },
+    "2024-07-26": {
+        "breakfast": {
+            "menu": "[オートミール, イチゴ, ギリシャヨーグルト]",
+            "weight": "[50g, 100g, 150g]",
+            "calorie": "[190kcal, 32kcal, 150kcal]"
+        },
+        "lunch": {
+            "menu": "[サバの塩焼き, 白米, ほうれん草のソテー]",
+            "weight": "[200g, 150g, 100g]",
+            "calorie": "[300kcal, 250kcal, 50kcal]"
+        },
+        "dinner": {
+            "menu": "[豚肉の生姜焼き, キャベツの千切り, 味噌汁]",
+            "weight": "[150g, 100g, 200ml]",
+            "calorie": "[250kcal, 25kcal, 50kcal]"
+        }
+    },
+    "2024-07-27": {
+        "breakfast": {
+            "menu": "[全粒粉トースト, アボカド, ゆで卵]",
+            "weight": "[50g, 50g, 2個]",
+            "calorie": "[130kcal, 80kcal, 140kcal]"
+        },
+        "lunch": {
+            "menu": "[鶏の胸肉グリル, 玄米, キャベツの千切り]",
+            "weight": "[200g, 150g, 100g]",
+            "calorie": "[220kcal, 200kcal, 25kcal]"
+        },
+        "dinner": {
+            "menu": "[サーモンの塩焼き, ほうれん草のおひたし, 味噌汁]",
+            "weight": "[150g, 100g, 200ml]",
+            "calorie": "[250kcal, 30kcal, 50kcal]"
+        }
+    },
+    "2024-07-28": {
+        "breakfast": {
+            "menu": "[オートミール, バナナ, ギリシャヨーグルト]",
+            "weight": "[50g, 100g, 150g]",
+            "calorie": "[190kcal, 89kcal, 150kcal]"
+        },
+        "lunch": {
+            "menu": "[チキンカレー, 白米, サラダ]",
+            "weight": "[200g, 150g, 100g]",
+            "calorie": "[300kcal, 250kcal, 50kcal]"
+        },
+        "dinner": {
+            "menu": "[鮭のホイル焼き, きんぴらごぼう, 味噌汁]",
+            "weight": "[150g, 100g, 200ml]",
+            "calorie": "[250kcal, 100kcal, 50kcal]"
+        }
+    }
+}

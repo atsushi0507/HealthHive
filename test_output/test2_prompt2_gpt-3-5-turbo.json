@@ -1,0 +1,121 @@
+{
+    "2024-07-22": {
+        "breakfast": {
+            "menu": "[玄米おにぎり, 味噌汁, ゆで卵]",
+            "weight": "[150g, 150ml, 50g]",
+            "calorie": "[297kcal, 33kcal, 78kcal]"
+        },
+        "lunch": {
+            "menu": "[鶏胸肉のグリル, 野菜サラダ, ご飯]",
+            "weight": "[100g, 150g, 200g]",
+            "calorie": "[165kcal, 45kcal, 214kcal]"
+        },
+        "dinner": {
+            "menu": "[ささみのしょうが焼き, きのこスープ, 納豆]",
+            "weight": "[100g, 150ml, 50g]",
+            "calorie": "[120kcal, 45kcal, 86kcal]"
+        }
+    },
+    "2024-07-23": {
+        "breakfast": {
+            "menu": "[ヨーグルト, バナナ]",
+            "weight": "[150g, 100g]",
+            "calorie": "[90kcal, 89kcal]"
+        },
+        "lunch": {
+            "menu": "[豆腐チャーハン, 味噌汁]",
+            "weight": "[200g, 150ml]",
+            "calorie": "[320kcal, 33kcal]"
+        },
+        "dinner": {
+            "menu": "[鮭の塩焼き, 野菜煮, ご飯]",
+            "weight": "[100g, 150g, 200g]",
+            "calorie": "[180kcal, 45kcal, 214kcal]"
+        }
+    },
+    "2024-07-24": {
+        "breakfast": {
+            "menu": "[玄米おにぎり, 味噌汁, ゆで卵]",
+            "weight": "[150g, 150ml, 50g]",
+            "calorie": "[297kcal, 33kcal, 78kcal]"
+        },
+        "lunch": {
+            "menu": "[鶏胸肉のグリル, 野菜サラダ, ご飯]",
+            "weight": "[100g, 150g, 200g]",
+            "calorie": "[165kcal, 45kcal, 214kcal]"
+        },
+        "dinner": {
+            "menu": "[ささみのしょうが焼き, きのこスープ, 納豆]",
+            "weight": "[100g, 150ml, 50g]",
+            "calorie": "[120kcal, 45kcal, 86kcal]"
+        }
+    },
+    "2024-07-25": {
+        "breakfast": {
+            "menu": "[ヨーグルト, バナナ]",
+            "weight": "[150g, 100g]",
+            "calorie": "[90kcal, 89kcal]"
+        },
+        "lunch": {
+            "menu": "[豆腐チャーハン, 味噌汁]",
+            "weight": "[200g, 150ml]",
+            "calorie": "[320kcal, 33kcal]"
+        },
+        "dinner": {
+            "menu": "[鮭の塩焼き, 野菜煮, ご飯]",
+            "weight": "[100g, 150g, 200g]",
+            "calorie": "[180kcal, 45kcal, 214kcal]"
+        }
+    },
+    "2024-07-26": {
+        "breakfast": {
+            "menu": "[玄米おにぎり, 味噌汁, ゆで卵]",
+            "weight": "[150g, 150ml, 50g]",
+            "calorie": "[297kcal, 33kcal, 78kcal]"
+        },
+        "lunch": {
+            "menu": "[鶏胸肉のグリル, 野菜サラダ, ご飯]",
+            "weight": "[100g, 150g, 200g]",
+            "calorie": "[165kcal, 45kcal, 214kcal]"
+        },
+        "dinner": {
+            "menu": "[ささみのしょうが焼き, きのこスープ, 納豆]",
+            "weight": "[100g, 150ml, 50g]",
+            "calorie": "[120kcal, 45kcal, 86kcal]"
+        }
+    },
+    "2024-07-27": {
+        "breakfast": {
+            "menu": "[ヨーグルト, バナナ]",
+            "weight": "[150g, 100g]",
+            "calorie": "[90kcal, 89kcal]"
+        },
+        "lunch": {
+            "menu": "[豆腐チャーハン, 味噌汁]",
+            "weight": "[200g, 150ml]",
+            "calorie": "[320kcal, 33kcal]"
+        },
+        "dinner": {
+            "menu": "[鮭の塩焼き, 野菜煮, ご飯]",
+            "weight": "[100g, 150g, 200g]",
+            "calorie": "[180kcal, 45kcal, 214kcal]"
+        }
+    },
+    "2024-07-28": {
+        "breakfast": {
+            "menu": "[玄米おにぎり, 味噌汁, ゆで卵]",
+            "weight": "[150g, 150ml, 50g]",
+            "calorie": "[297kcal, 33kcal, 78kcal]"
+        },
+        "lunch": {
+            "menu": "[鶏胸肉のグリル, 野菜サラダ, ご飯]",
+            "weight": "[100g, 150g, 200g]",
+            "calorie": "[165kcal, 45kcal, 214kcal]"
+        },
+        "dinner": {
+            "menu": "[ささみのしょうが焼き, きのこスープ, 納豆]",
+            "weight": "[100g, 150ml, 50g]",
+            "calorie": "[120kcal, 45kcal, 86kcal]"
+        }
+    }
+}
