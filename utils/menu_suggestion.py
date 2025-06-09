@@ -172,12 +172,9 @@ def display_meal_plan_by_calendar():
         data = plan.to_dict().get("data", {})
         for date, meals in data.items():
             for meal_type, detail in meals.items():
-                menu_str = detail["menu"]
-                weight_str = detail["weight"]
-                cal_str = detail["calorie"]
-                menu_list = menu_str.strip("[]").strip(" ").split(",")
-                weight_list = weight_str.strip("[]").strip(" ").split(",")
-                cal_list = cal_str.strip("[]").strip(" ").split(",")
+                menu_list = detail["menu"]
+                weight_list = detail["weight"]
+                cal_list = detail["calorie"]
                 total_cal = 0
                 for cal in cal_list:
                     int_cal = re.sub(r'\D', '', cal) 
